@@ -16,8 +16,8 @@ export default function SettingsButton({
       onClick={onOpenSettings}
       className="p-2 rounded-full hover:bg-opacity-10 transition-colors fixed bottom-4 right-4"
       style={{
-        color: currentTheme.primary,
-        backgroundColor: `${currentTheme.primary}10`,
+        color: `white`,
+        backgroundColor: `${currentTheme.primary}`,
       }}
       aria-label="Open Settings"
     >

@@ -34,7 +34,13 @@ export default function Calendar() {
   );
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const year = 2025;
-  const [currentMonthIndex, setCurrentMonthIndex] = useState(0);
+  const [currentMonthIndex, setCurrentMonthIndex] = useState(() => {
+    const now = new Date();
+    if (now.getFullYear() === 2025) {
+      return now.getMonth();
+    }
+    return 0;
+  });
   const [showSettings, setShowSettings] = useState(false);
   const [currentTheme, setCurrentTheme] = useLocalStorage<ThemeColor>(
     "calendar-theme",
