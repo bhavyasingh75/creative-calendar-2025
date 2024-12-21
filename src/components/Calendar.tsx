@@ -10,6 +10,7 @@ import SettingsModal from "./SettingsModal";
 import { ThemeColor, themes } from "../types/theme";
 import ThemeProvider from "./ThemeProvider";
 import { useGoogleCalendar } from "../hooks/useGoogleCalendar";
+import InstallPrompt from "./InstallPrompt";
 
 const MONTHS = [
   "January",
@@ -155,6 +156,7 @@ export default function Calendar() {
           onGoogleCalendarConfigChange={setConfig}
           error={error}
         />
+        <InstallPrompt />
       </div>
     </ThemeProvider>
   );
