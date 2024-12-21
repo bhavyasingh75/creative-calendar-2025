@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import type { Task } from '../types/calendar';
+import { useState, useEffect } from "react";
+import type { Task } from "../types/calendar";
 
-export function useLocalStorage(key: string, initialValue: Task[]) {
-  const [storedValue, setStoredValue] = useState<Task[]>(() => {
+export function useLocalStorage<T>(key: string, initialValue: T) {
+  const [storedValue, setStoredValue] = useState<T>(() => {
     try {
       const item = window.localStorage.getItem(key);
       return item ? JSON.parse(item) : initialValue;

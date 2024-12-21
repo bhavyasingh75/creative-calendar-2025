@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #f97316;
+  --color-secondary: #fed7aa;
+  --color-accent: #ea580c;
+  --color-background: #fff7ed;
+}
+
+.calendar-cell {
+  @apply p-2 bg-white rounded border min-h-24 hover:shadow-md transition-shadow cursor-pointer;
+}
+
+.calendar-cell.weekend {
+  background-color: var(--color-background);
+}
+
+.calendar-cell.completed {
+  border-color: var(--color-accent);
+  background-color: var(--color-secondary);
+}
+
+.calendar-cell.partially-completed {
+  border-color: var(--color-primary);
+}
