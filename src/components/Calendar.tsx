@@ -98,18 +98,12 @@ export default function Calendar() {
   return (
     <ThemeProvider theme={currentTheme}>
       <div className="p-3 md:p-6 max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 md:mb-8 gap-4">
-          <h1
-            className="text-3xl md:text-5xl font-handwritten font-black uppercase text-center md:text-left"
-            style={{ color: currentTheme.primary }}
-          >
-            The 2025 Creative Calendar
-          </h1>
-          <SettingsButton
-            onOpenSettings={() => setShowSettings(true)}
-            currentTheme={currentTheme}
-          />
-        </div>
+        <h1
+          className="text-5xl font-handwritten font-black mb-8 text-center tracking-[-0.1em] uppercase "
+          style={{ color: currentTheme.primary }}
+        >
+          The 2025 Creative Calendar
+        </h1>
 
         <div className="space-y-6 overflow-hidden">
           <AnimatePresence mode="wait">
@@ -155,6 +149,10 @@ export default function Calendar() {
           onGoogleCalendarDisconnect={disconnectCalendar}
           onGoogleCalendarConfigChange={setConfig}
           error={error}
+        />
+        <SettingsButton
+          onOpenSettings={() => setShowSettings(true)}
+          currentTheme={currentTheme}
         />
         <InstallPrompt />
       </div>

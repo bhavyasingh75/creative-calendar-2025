@@ -18,7 +18,7 @@ export default {
         }
       },
       fontFamily: {
-        handwritten: ['Architects Daughter', 'cursive'],
+        'normal': ['Sour Gummy', 'serif'],
       },
     },
   },

@@ -14,7 +14,7 @@ export default function SettingsButton({
   return (
     <button
       onClick={onOpenSettings}
-      className="p-2 rounded-full hover:bg-opacity-10 transition-colors"
+      className="p-2 rounded-full hover:bg-opacity-10 transition-colors fixed bottom-4 right-4"
       style={{
         color: currentTheme.primary,
         backgroundColor: `${currentTheme.primary}10`,
