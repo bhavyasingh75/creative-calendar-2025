@@ -99,7 +99,7 @@ export default function Calendar() {
       <div className="p-3 md:p-6 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 md:mb-8 gap-4">
           <h1
-            className="text-3xl md:text-5xl font-handwritten font-black tracking-[-0.1em] uppercase text-center md:text-left"
+            className="text-3xl md:text-5xl font-handwritten font-black uppercase text-center md:text-left"
             style={{ color: currentTheme.primary }}
           >
             The 2025 Creative Calendar
