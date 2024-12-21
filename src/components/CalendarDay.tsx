@@ -13,6 +13,7 @@ interface CalendarDayProps {
   dateStr: string;
   onQuickAdd: (task: Partial<Task>) => void;
   currentTheme: ThemeColor;
+  isCurrentDate?: boolean;
 }
 
 export default function CalendarDay({
@@ -22,6 +23,7 @@ export default function CalendarDay({
   dateStr,
   onQuickAdd,
   currentTheme,
+  isCurrentDate,
 }: CalendarDayProps) {
   const [showQuickAdd, setShowQuickAdd] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
@@ -42,15 +44,34 @@ export default function CalendarDay({
   const isWeekendDay = isWeekend(date);
 
   const getClassName = () => {
-    const baseClass = "calendar-cell";
-    if (allTasksCompleted) return `${baseClass} completed`;
-    if (hasCompletedTasks) return `${baseClass} partially-completed`;
-    if (isWeekendDay) return `${baseClass} weekend`;
-    return baseClass;
+    const baseClass = "calendar-cell relative";
+    let className = baseClass;
+    if (isCurrentDate)
+      className +=
+        " border-1 border-solid border-[#22c55e] !border-opacity-100";
+    console.log(className);
+
+    if (allTasksCompleted) className += " completed";
+    else if (hasCompletedTasks) className += " partially-completed";
+    else if (isWeekendDay) className += " weekend";
+
+    return className;
   };
 
   return (
-    <div className={getClassName()} onClick={() => onAddTask(dateStr)}>
+    <div
+      className={getClassName()}
+      onClick={() => onAddTask(dateStr)}
+      style={
+        isCurrentDate
+          ? {
+              borderColor: currentTheme.primary,
+              borderWidth: "1px",
+              // backgroundColor: `${currentTheme.primary}10`,
+            }
+          : undefined
+      }
+    >
       <div className="flex justify-between items-start">
         <span className="text-xs md:text-sm font-handwritten font-semibold">
           {date.getDate()}

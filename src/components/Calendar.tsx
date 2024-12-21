@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import MonthGrid from "./MonthGrid";
 import TaskModal from "./TaskModal";
 import { useLocalStorage } from "../hooks/useLocalStorage";
@@ -95,6 +95,16 @@ export default function Calendar() {
     });
   };
 
+  const getCurrentDate = () => {
+    const now = new Date();
+    if (now.getFullYear() === 2025) {
+      return new Date(now).toISOString().split("T")[0];
+    }
+    return new Date(2025, 0, 1).toISOString().split("T")[0];
+  };
+
+  const currentDate = useMemo(() => getCurrentDate(), []);
+
   return (
     <ThemeProvider theme={currentTheme}>
       <div className="p-3 md:p-6 max-w-7xl mx-auto">
@@ -105,27 +115,35 @@ export default function Calendar() {
           The 2025 Creative Calendar
         </h1>
 
-        <div className="space-y-6 overflow-hidden">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentMonthIndex}
-              initial={{ x: 300, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: -300, opacity: 0 }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            >
-              <MonthGrid
-                month={MONTHS[currentMonthIndex]}
-                monthIndex={currentMonthIndex}
-                year={year}
-                tasks={tasks}
-                onAddTask={setSelectedDate}
-                onQuickAdd={handleAddTask}
-                currentTheme={currentTheme}
-                onNavigateMonth={navigateMonth}
-              />
-            </motion.div>
-          </AnimatePresence>
+        <div className="bg-white rounded-lg shadow-md p-2 md:p-4">
+          <div className="space-y-6 overflow-hidden">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentMonthIndex}
+                initial={{ x: 300, opacity: 0, filter: "blur(10px)" }}
+                animate={{ x: 0, opacity: 1, filter: "blur(0px)" }}
+                exit={{ x: -300, opacity: 0, filter: "blur(10px)" }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 30,
+                  filter: { duration: 0.4 },
+                }}
+              >
+                <MonthGrid
+                  month={MONTHS[currentMonthIndex]}
+                  monthIndex={currentMonthIndex}
+                  year={year}
+                  tasks={tasks}
+                  onAddTask={setSelectedDate}
+                  onQuickAdd={handleAddTask}
+                  currentTheme={currentTheme}
+                  onNavigateMonth={navigateMonth}
+                  currentDate={currentDate}
+                />
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
 
         <TaskModal

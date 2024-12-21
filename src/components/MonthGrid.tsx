@@ -4,6 +4,7 @@ import { getMonthDays, formatDate } from "../utils/calendarHelpers";
 import type { Task } from "../types/calendar";
 import { ThemeColor } from "../types/theme";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface MonthGridProps {
   month: string;
@@ -14,6 +15,7 @@ interface MonthGridProps {
   currentTheme: ThemeColor;
   onQuickAdd: (task: Partial<Task>) => void;
   onNavigateMonth: (direction: "prev" | "next") => void;
+  currentDate: string;
 }
 
 const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -27,6 +29,7 @@ export default function MonthGrid({
   currentTheme,
   onQuickAdd,
   onNavigateMonth,
+  currentDate,
 }: MonthGridProps) {
   const days = getMonthDays(year, monthIndex);
 
@@ -60,8 +63,13 @@ export default function MonthGrid({
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-2 md:p-4">
-      <div className="flex items-center justify-between mb-4">
+    <div>
+      <motion.div
+        initial={{ opacity: 0, filter: "blur(10px)" }}
+        animate={{ opacity: 1, filter: "blur(0px)" }}
+        transition={{ duration: 0.5 }}
+        className="flex items-center justify-between mb-4"
+      >
         <button
           onClick={() => onNavigateMonth("prev")}
           className="p-1 md:p-2 rounded-full hover:bg-opacity-10 transition-colors"
@@ -88,9 +96,14 @@ export default function MonthGrid({
         >
           <ChevronRight size={20} className="md:w-6 md:h-6" />
         </button>
-      </div>
+      </motion.div>
 
-      <div className="flex flex-col gap-1 md:gap-2">
+      <motion.div
+        initial={{ opacity: 0, filter: "blur(10px)" }}
+        animate={{ opacity: 1, filter: "blur(0px)" }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="flex flex-col gap-1 md:gap-2"
+      >
         <div className="grid grid-cols-7 gap-1 md:gap-2">
           {WEEKDAYS.map((day) => (
             <div
@@ -121,12 +134,13 @@ export default function MonthGrid({
                   dateStr={dateStr}
                   onQuickAdd={onQuickAdd}
                   currentTheme={currentTheme}
+                  isCurrentDate={dateStr === currentDate}
                 />
               );
             })}
           </div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 }
