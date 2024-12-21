@@ -107,7 +107,7 @@ export default function CalendarDay({
                 {task.category && (
                   <span className="mr-1">
                     {task.category === "writing" && "✍️"}
-                    {task.category === "visual" && "����"}
+                    {task.category === "visual" && "🎨"}
                     {task.category === "audio" && "🎵"}
                     {task.category === "learning" && "📚"}
                     {task.category === "reflection" && "🤔"}
