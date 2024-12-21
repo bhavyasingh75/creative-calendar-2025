@@ -2,18 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-primary: #f97316;
+  --color-secondary: #fed7aa;
+  --color-accent: #ea580c;
+  --color-background: #fff7ed;
+}
+
 .calendar-cell {
-  @apply h-24 border rounded-lg p-2 cursor-pointer transition-colors;
+  @apply p-2 bg-white rounded border min-h-24 hover:shadow-md transition-shadow cursor-pointer;
 }
 
 .calendar-cell.weekend {
-  @apply bg-orange-50;
+  background-color: var(--color-background);
 }
 
 .calendar-cell.completed {
-  @apply bg-green-50;
+  border-color: var(--color-accent);
+  background-color: var(--color-secondary);
 }
 
 .calendar-cell.partially-completed {
-  @apply bg-green-50/50;
+  border-color: var(--color-primary);
 }
