@@ -108,7 +108,7 @@ export default function SettingsModal({
               </div>
             </div>
 
-            <div className="border-t pt-6">
+            {/* <div className="border-t pt-6">
               <h3 className="text-lg font-handwritten font-semibold mb-3">
                 Google Calendar Integration
               </h3>
@@ -180,7 +180,7 @@ export default function SettingsModal({
                   <div className="text-red-600 text-sm mt-2">{error}</div>
                 )}
               </div>
-            </div>
+            </div> */}
           </div>
         </motion.div>
       </motion.div>
