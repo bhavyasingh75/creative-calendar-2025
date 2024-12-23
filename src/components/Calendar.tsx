@@ -46,6 +46,7 @@ export default function Calendar() {
     "calendar-theme",
     themes[0]
   );
+  const [isPrivacyMode, setIsPrivacyMode] = useLocalStorage("calendar-privacy-mode", false);
 
   const {
     events: googleEvents,
@@ -146,6 +147,7 @@ export default function Calendar() {
                   currentTheme={currentTheme}
                   onNavigateMonth={navigateMonth}
                   currentDate={currentDate}
+                  isPrivacyMode={isPrivacyMode}
                 />
               </motion.div>
             </AnimatePresence>
@@ -173,6 +175,8 @@ export default function Calendar() {
           onGoogleCalendarDisconnect={disconnectCalendar}
           onGoogleCalendarConfigChange={setConfig}
           error={error}
+          isPrivacyMode={isPrivacyMode}
+          onPrivacyModeChange={setIsPrivacyMode}
         />
         <SettingsButton
           onOpenSettings={() => setShowSettings(true)}
