@@ -191,11 +191,11 @@ export default function Calendar() {
           currentTheme={currentTheme}
         />
         <InstallPrompt />
-        <OnboardingModal
+        {/* <OnboardingModal
           isOpen={showOnboarding}
           onClose={() => setShowOnboarding(false)}
           currentTheme={currentTheme}
-        />
+        /> */}
       </div>
     </ThemeProvider>
   );
