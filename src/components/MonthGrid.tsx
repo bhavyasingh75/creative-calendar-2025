@@ -16,6 +16,7 @@ interface MonthGridProps {
   onQuickAdd: (task: Partial<Task>) => void;
   onNavigateMonth: (direction: "prev" | "next") => void;
   currentDate: string;
+  isPrivacyMode: boolean;
 }
 
 const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -30,6 +31,7 @@ export default function MonthGrid({
   onQuickAdd,
   onNavigateMonth,
   currentDate,
+  isPrivacyMode,
 }: MonthGridProps) {
   const days = getMonthDays(year, monthIndex);
 
@@ -135,6 +137,7 @@ export default function MonthGrid({
                   onQuickAdd={onQuickAdd}
                   currentTheme={currentTheme}
                   isCurrentDate={dateStr === currentDate}
+                  isPrivacyMode={isPrivacyMode}
                 />
               );
             })}

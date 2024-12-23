@@ -5,10 +5,11 @@ import { ThemeColor } from "../types/theme";
 import { X } from "lucide-react";
 
 interface QuickAddProps {
-  onAdd: (task: Partial<Task>) => void;
   date: string;
+  onAdd: (task: Partial<Task>) => void;
   onClose: () => void;
   currentTheme: ThemeColor;
+  isPrivacyMode?: boolean;
 }
 
 const CATEGORIES = [
@@ -20,10 +21,11 @@ const CATEGORIES = [
 ] as const;
 
 export default function QuickAdd({
-  onAdd,
   date,
+  onAdd,
   onClose,
   currentTheme,
+  isPrivacyMode,
 }: QuickAddProps) {
   const [content, setContent] = useState("");
   const [category, setCategory] = useState<Task["category"]>("writing");
@@ -67,7 +69,11 @@ export default function QuickAdd({
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.8, opacity: 0 }}
         transition={{ type: "spring", stiffness: 500, damping: 30 }}
-        className="bg-white rounded-lg shadow-lg p-3 md:p-4 w-[280px] md:w-64"
+        className={`bg-white rounded-lg shadow-lg p-3 ${
+          isPrivacyMode
+            ? "blur-sm hover:blur-none transition-all duration-200"
+            : ""
+        }`}
       >
         <div className="flex justify-between items-center mb-2 md:mb-3">
           <span className="text-xs md:text-sm font-handwritten font-semibold">

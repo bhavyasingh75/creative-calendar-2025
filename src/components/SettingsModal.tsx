@@ -14,6 +14,8 @@ interface SettingsModalProps {
   onGoogleCalendarDisconnect: () => void;
   onGoogleCalendarConfigChange: (config: GoogleCalendarConfig) => void;
   error: string | null;
+  isPrivacyMode: boolean;
+  onPrivacyModeChange: (value: boolean) => void;
 }
 
 export default function SettingsModal({
@@ -26,6 +28,8 @@ export default function SettingsModal({
   onGoogleCalendarDisconnect,
   onGoogleCalendarConfigChange,
   error,
+  isPrivacyMode,
+  onPrivacyModeChange,
 }: SettingsModalProps) {
   const [isConnecting, setIsConnecting] = useState(false);
 
@@ -106,6 +110,25 @@ export default function SettingsModal({
                   </button>
                 ))}
               </div>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <label className="font-medium">Privacy Mode</label>
+              <button
+                onClick={() => onPrivacyModeChange(!isPrivacyMode)}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors`}
+                style={{
+                  backgroundColor: isPrivacyMode
+                    ? currentTheme.primary
+                    : "#e5e7eb",
+                }}
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    isPrivacyMode ? "translate-x-6" : "translate-x-1"
+                  }`}
+                />
+              </button>
             </div>
 
             {/* <div className="border-t pt-6">

@@ -14,6 +14,7 @@ interface CalendarDayProps {
   onQuickAdd: (task: Partial<Task>) => void;
   currentTheme: ThemeColor;
   isCurrentDate?: boolean;
+  isPrivacyMode: boolean;
 }
 
 export default function CalendarDay({
@@ -24,6 +25,7 @@ export default function CalendarDay({
   onQuickAdd,
   currentTheme,
   isCurrentDate,
+  isPrivacyMode,
 }: CalendarDayProps) {
   const [showQuickAdd, setShowQuickAdd] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
@@ -101,6 +103,7 @@ export default function CalendarDay({
                 onAdd={onQuickAdd}
                 onClose={() => setShowQuickAdd(false)}
                 currentTheme={currentTheme}
+                isPrivacyMode={isPrivacyMode}
               />
             </div>
           )}
@@ -115,7 +118,11 @@ export default function CalendarDay({
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className={`text-xs p-1 rounded flex items-center gap-1 font-handwritten font-semibold`}
+              className={`text-xs p-1 rounded flex items-center gap-1 font-handwritten font-semibold ${
+                isPrivacyMode
+                  ? "blur-sm hover:blur-none transition-all duration-200"
+                  : ""
+              }`}
               style={{
                 backgroundColor: task.completed
                   ? `${currentTheme.secondary}80` // 80 is for opacity
@@ -134,7 +141,7 @@ export default function CalendarDay({
                     {task.category === "reflection" && "🤔"}
                   </span>
                 )}
-                {task.content}
+                {isPrivacyMode ? "••••••" : task.content}
               </span>
             </motion.div>
           ))}

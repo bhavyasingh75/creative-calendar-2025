@@ -2,26 +2,100 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <!-- Favicons -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/favicon_io/android-chrome-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="512x512"
+      href="/favicon_io/android-chrome-512x512.png"
+    />
+    <link rel="apple-touch-icon" href="/favicon_io/apple-touch-icon.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon_io/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon_io/favicon-32x32.png"
+    />
+    <link rel="icon" type="image/x-icon" href="/favicon_io/favicon.ico" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Security -->
     <meta
       http-equiv="Content-Security-Policy"
       content="script-src 'self' https://apis.google.com https://accounts.google.com https://www.googleapis.com https://*.gstatic.com 'unsafe-inline';"
     />
+
+    <!-- Primary Meta Tags -->
+    <title>Creatives Calendar 2025 - Your Creative Journey Planner</title>
+    <meta
+      name="title"
+      content="Creatives Calendar 2025 - Your Creative Journey Planner"
+    />
+    <meta
+      name="description"
+      content="Plan your creative journey with our intuitive 2025 calendar. Track tasks, set goals, and organize your artistic endeavors all in one beautiful space."
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Creatives Calendar 2025" />
+    <meta
+      property="og:description"
+      content="Plan your creative journey with our intuitive 2025 calendar. Track tasks, set goals, and organize your artistic endeavors all in one beautiful space."
+    />
+    <meta property="og:image" content="/1.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="Creatives Calendar 2025" />
+    <meta
+      property="twitter:description"
+      content="Plan your creative journey with our intuitive 2025 calendar. Track tasks, set goals, and organize your artistic endeavors all in one beautiful space."
+    />
+    <meta property="twitter:image" content="/1.png" />
+
+    <!-- Keywords -->
+    <meta
+      name="keywords"
+      content="creative calendar, 2025 planner, creative planning, artistic goals, task management, creative organization, digital planner"
+    />
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <title>Creatives Calendar 2025</title>
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#22c55e" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <!-- Google Integration -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://apis.google.com/js/api.js"></script>
-    <link rel="manifest" href="/web-manifest.json" />
-    <meta name="theme-color" content="#000000" />
-    <link rel="apple-touch-icon" href="/icon-192.png" />
   </head>
   <body>
+    <noscript
+      >You need to enable JavaScript to run this Creative Calendar
+      app.</noscript
+    >
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     <script>

@@ -11,6 +11,7 @@ import { ThemeColor, themes } from "../types/theme";
 import ThemeProvider from "./ThemeProvider";
 import { useGoogleCalendar } from "../hooks/useGoogleCalendar";
 import InstallPrompt from "./InstallPrompt";
+import OnboardingModal from "./OnboardingModal";
 
 const MONTHS = [
   "January",
@@ -45,6 +46,14 @@ export default function Calendar() {
   const [currentTheme, setCurrentTheme] = useLocalStorage<ThemeColor>(
     "calendar-theme",
     themes[0]
+  );
+  const [isPrivacyMode, setIsPrivacyMode] = useLocalStorage(
+    "calendar-privacy-mode",
+    false
+  );
+  const [showOnboarding, setShowOnboarding] = useLocalStorage(
+    "calendar-onboarding-shown",
+    true
   );
 
   const {
@@ -146,6 +155,7 @@ export default function Calendar() {
                   currentTheme={currentTheme}
                   onNavigateMonth={navigateMonth}
                   currentDate={currentDate}
+                  isPrivacyMode={isPrivacyMode}
                 />
               </motion.div>
             </AnimatePresence>
@@ -173,12 +183,19 @@ export default function Calendar() {
           onGoogleCalendarDisconnect={disconnectCalendar}
           onGoogleCalendarConfigChange={setConfig}
           error={error}
+          isPrivacyMode={isPrivacyMode}
+          onPrivacyModeChange={setIsPrivacyMode}
         />
         <SettingsButton
           onOpenSettings={() => setShowSettings(true)}
           currentTheme={currentTheme}
         />
         <InstallPrompt />
+        {/* <OnboardingModal
+          isOpen={showOnboarding}
+          onClose={() => setShowOnboarding(false)}
+          currentTheme={currentTheme}
+        /> */}
       </div>
     </ThemeProvider>
   );
