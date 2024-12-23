@@ -119,7 +119,9 @@ export default function CalendarDay({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               className={`text-xs p-1 rounded flex items-center gap-1 font-handwritten font-semibold ${
-                isPrivacyMode ? 'blur-sm hover:blur-none transition-all duration-200' : ''
+                isPrivacyMode
+                  ? "blur-sm hover:blur-none transition-all duration-200"
+                  : ""
               }`}
               style={{
                 backgroundColor: task.completed

@@ -11,6 +11,7 @@ import { ThemeColor, themes } from "../types/theme";
 import ThemeProvider from "./ThemeProvider";
 import { useGoogleCalendar } from "../hooks/useGoogleCalendar";
 import InstallPrompt from "./InstallPrompt";
+import OnboardingModal from "./OnboardingModal";
 
 const MONTHS = [
   "January",
@@ -46,7 +47,14 @@ export default function Calendar() {
     "calendar-theme",
     themes[0]
   );
-  const [isPrivacyMode, setIsPrivacyMode] = useLocalStorage("calendar-privacy-mode", false);
+  const [isPrivacyMode, setIsPrivacyMode] = useLocalStorage(
+    "calendar-privacy-mode",
+    false
+  );
+  const [showOnboarding, setShowOnboarding] = useLocalStorage(
+    "calendar-onboarding-shown",
+    true
+  );
 
   const {
     events: googleEvents,
@@ -183,6 +191,11 @@ export default function Calendar() {
           currentTheme={currentTheme}
         />
         <InstallPrompt />
+        <OnboardingModal
+          isOpen={showOnboarding}
+          onClose={() => setShowOnboarding(false)}
+          currentTheme={currentTheme}
+        />
       </div>
     </ThemeProvider>
   );

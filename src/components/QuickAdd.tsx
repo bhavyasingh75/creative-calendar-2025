@@ -70,7 +70,9 @@ export default function QuickAdd({
         exit={{ scale: 0.8, opacity: 0 }}
         transition={{ type: "spring", stiffness: 500, damping: 30 }}
         className={`bg-white rounded-lg shadow-lg p-3 ${
-          isPrivacyMode ? 'blur-sm hover:blur-none transition-all duration-200' : ''
+          isPrivacyMode
+            ? "blur-sm hover:blur-none transition-all duration-200"
+            : ""
         }`}
       >
         <div className="flex justify-between items-center mb-2 md:mb-3">
